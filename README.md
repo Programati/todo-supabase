@@ -1,6 +1,6 @@
 # todo-supabase
 
-Task manager built with React, Supabase, TanStack Query, Zustand and React Router (Data Mode).
+TodoList con React, Supabase, TanStack Query, Zustand and React Router (Data Mode).
 
 ## Requirements
 
@@ -9,15 +9,15 @@ Task manager built with React, Supabase, TanStack Query, Zustand and React Route
 
 ## Setup
 
-1. Install dependencies:
+1. Instala dependencias:
 
 ```bash
    pnpm install
 ```
 
-2. Copy `.env.example` to `.env.local` and fill in your Supabase project values.
+2. Copy `.env.example` to `.env.local` y completalos con los valores de tu proyecto de Supabase.
 
-3. Start the dev server:
+3. Levantar el server:
 
 ```bash
    pnpm dev
