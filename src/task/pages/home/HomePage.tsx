@@ -11,13 +11,15 @@
 //   );
 // };
 
+import { CustomFullScreenLoading } from "@/components/custom/CustomFullScreenLoading";
 import { useTasks } from "@/task/hooks/useTasks";
 
 // export default function HomePage() {
 export const HomePage = () => {
   const { data: tasks, isPending, isError, error } = useTasks();
 
-  if (isPending) return <p>Cargando tareas...</p>;
+  // if (isPending) return <p>Cargando tareas...</p>;
+  if (isPending) return <CustomFullScreenLoading />;
   if (isError) return <p>Error: {error.message}</p>;
 
   return (
