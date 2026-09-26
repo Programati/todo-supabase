@@ -1,24 +1,18 @@
-import { RouterProvider } from "react-router";
-import { appRouter } from "./app.router";
-
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-
+import { RouterProvider } from "react-router/dom";
 import { Toaster } from "@/components/ui/sonner";
-
-// Create a client
-const queryClient = new QueryClient();
+import { queryClient } from "@/lib/query-client";
+import { appRouter } from "@/app.router";
 
 export const TodoApp = () => {
   return (
-    <>
-      <QueryClientProvider client={queryClient}>
-        <Toaster richColors position="top-right" />
+    <QueryClientProvider client={queryClient}>
+      <Toaster richColors position="top-right" />
 
-        <RouterProvider router={appRouter} />
+      <RouterProvider router={appRouter} />
 
-        <ReactQueryDevtools initialIsOpen={false} />
-      </QueryClientProvider>
-    </>
+      <ReactQueryDevtools initialIsOpen={false} />
+    </QueryClientProvider>
   );
 };
