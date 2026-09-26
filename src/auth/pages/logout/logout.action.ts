@@ -1,15 +1,15 @@
 import { redirect } from "react-router";
 import { signOut } from "@/auth/api/auth.api";
 import { queryClient } from "@/lib/query-client";
+import { useSessionStore } from "@/stores/session.store";
 
 export async function logoutAction() {
   await signOut();
+  useSessionStore.getState().setUserId(null); // redundante con la suscripción, pero explícito
   queryClient.clear();
   return redirect("/login");
 }
 
-// Si alguien entra a "/logout" escribiendo la URL (GET, no POST),
-// no hay acción que ejecutar — lo mandamos de vuelta al inicio.
 export function logoutLoader() {
   return redirect("/");
 }
