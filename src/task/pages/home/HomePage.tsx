@@ -1,24 +1,9 @@
-// import { toast } from "sonner";
-// import { Button } from "@/components/ui/button";
-
-// export const HomePage = () => {
-//   return (
-//     <main className="grid min-h-screen place-items-center bg-background text-foreground">
-//       <Button onClick={() => toast.success("Setup correcto")}>
-//         Probar setup
-//       </Button>
-//     </main>
-//   );
-// };
-
 import { CustomFullScreenLoading } from "@/components/custom/CustomFullScreenLoading";
 import { useTasks } from "@/task/hooks/useTasks";
 
-// export default function HomePage() {
 export const HomePage = () => {
   const { data: tasks, isPending, isError, error } = useTasks();
 
-  // if (isPending) return <p>Cargando tareas...</p>;
   if (isPending) return <CustomFullScreenLoading />;
   if (isError) return <p>Error: {error.message}</p>;
 
