@@ -16,7 +16,7 @@ export const TodoApp = () => {
         <Toaster richColors position="top-right" />
 
         <RouterProvider router={appRouter} />
-        <h1>Lista de tareas</h1>
+
         <ReactQueryDevtools initialIsOpen={false} />
       </QueryClientProvider>
     </>
