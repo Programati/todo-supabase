@@ -8,6 +8,7 @@ import { logoutAction, logoutLoader } from "@/auth/pages/logout/logout.action";
 import { CustomErrorFallback } from "@/components/custom/CustomErrorFallback";
 import { CustomFullScreenLoading } from "@/components/custom/CustomFullScreenLoading";
 import { CustomNotFound } from "@/components/custom/CustomNotFound";
+import { homeAction } from "@/task/pages/home/home.action";
 import { HomePage } from "@/task/pages/home/HomePage";
 import { homeLoader } from "@/task/pages/home/home.loader";
 
@@ -30,8 +31,16 @@ export const appRouter = createBrowserRouter([
     HydrateFallback: CustomFullScreenLoading,
     ErrorBoundary: CustomErrorFallback,
     children: [
-      { index: true, Component: HomePage, loader: homeLoader },
-      { path: "*", Component: CustomNotFound },
+      {
+        index: true,
+        Component: HomePage,
+        loader: homeLoader,
+        action: homeAction,
+      },
+      {
+        path: "*",
+        Component: CustomNotFound,
+      },
     ],
   },
 ]);
