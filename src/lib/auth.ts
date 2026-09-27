@@ -10,3 +10,11 @@ export async function requireSession() {
 
   return data.session;
 }
+
+export async function requireGuest() {
+  const { data } = await supabase.auth.getSession();
+
+  if (data.session) {
+    throw redirect("/");
+  }
+}
