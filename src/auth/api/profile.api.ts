@@ -3,12 +3,7 @@ import type { Tables } from "@/types/database-helpers";
 
 export type Profile = Tables<"profiles">;
 
-export async function getMyProfile(): Promise<Profile> {
-  const { data: sessionData } = await supabase.auth.getSession();
-  const userId = sessionData.session?.user.id;
-
-  if (!userId) throw new Error("No hay sesión activa");
-
+export async function getProfile(userId: string): Promise<Profile> {
   const { data, error } = await supabase
     .from("profiles")
     .select("*")
