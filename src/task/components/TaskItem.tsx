@@ -61,11 +61,13 @@ export const TaskItem = ({ task }: TaskItemProps) => {
       </span>
 
       <AlertDialog>
-        <AlertDialogTrigger asChild>
-          <Button type="button" variant="ghost" size="sm">
-            Borrar
-          </Button>
-        </AlertDialogTrigger>
+        <AlertDialogTrigger
+          render={
+            <Button type="button" variant="ghost" size="sm">
+              Borrar
+            </Button>
+          }
+        />
         <AlertDialogContent>
           <AlertDialogHeader>
             <AlertDialogTitle>¿Borrar esta tarea?</AlertDialogTitle>
