@@ -3,10 +3,11 @@ import type { Tables } from "@/types/database-helpers";
 
 export type Task = Tables<"tasks">;
 
-export async function getTasks(): Promise<Task[]> {
+export async function getTasks(userId: string): Promise<Task[]> {
   const { data, error } = await supabase
     .from("tasks")
     .select("*")
+    .eq("user_id", userId)
     .order("created_at", { ascending: false });
 
   if (error) throw error;
@@ -41,5 +42,15 @@ export async function deleteTask(id: string): Promise<void> {
     .select()
     .single();
 
+  if (error) throw error;
+}
+
+export async function deleteCompletedTasks(): Promise<void> {
+  // RLS limita el delete a las filas del usuario actual.
+  // Sin .single(): borrar cero o muchas filas es un resultado válido acá.
+  const { error } = await supabase
+    .from("tasks")
+    .delete()
+    .eq("status", "completed");
   if (error) throw error;
 }
