@@ -50,15 +50,25 @@ export const TaskItem = ({ task }: TaskItemProps) => {
         }
       />
 
-      <span
-        className={
-          displayedStatus === "completed"
-            ? "flex-1 text-muted-foreground line-through"
-            : "flex-1"
-        }
-      >
-        {task.title}
-      </span>
+      <div className="flex-1">
+        <span
+          className={
+            displayedStatus === "completed"
+              ? "text-muted-foreground line-through"
+              : ""
+          }
+        >
+          {task.title}
+        </span>
+        {displayedStatus === "completed" && task.completed_at && (
+          <p className="text-xs text-muted-foreground">
+            {new Date(task.completed_at).toLocaleString("es-AR", {
+              dateStyle: "short",
+              timeStyle: "short",
+            })}
+          </p>
+        )}
+      </div>
 
       <AlertDialog>
         <AlertDialogTrigger

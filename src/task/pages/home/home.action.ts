@@ -1,6 +1,11 @@
 import { redirect, type ActionFunctionArgs } from "react-router";
 import { toast } from "sonner";
-import { createTask, deleteTask, setTaskStatus } from "@/task/api/task.api";
+import {
+  createTask,
+  deleteCompletedTasks,
+  deleteTask,
+  setTaskStatus,
+} from "@/task/api/task.api";
 import { queryClient } from "@/lib/query-client";
 import { useSessionStore } from "@/stores/session.store";
 
@@ -32,6 +37,10 @@ export async function homeAction({ request }: ActionFunctionArgs) {
       }
       case "delete": {
         await deleteTask(String(formData.get("id")));
+        break;
+      }
+      case "delete-completed": {
+        await deleteCompletedTasks();
         break;
       }
       default:
