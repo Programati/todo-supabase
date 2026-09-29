@@ -29,13 +29,25 @@ export async function setUserRole(
   if (error) throw error;
 }
 
-export async function createUserAsAdmin(email: string, password: string) {
+export async function createUserAsAdmin(
+  email: string,
+  password: string,
+  fullName?: string,
+) {
   const tempClient = createClient<Database>(
     import.meta.env.VITE_SUPABASE_URL,
     import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY,
     { auth: { persistSession: false, autoRefreshToken: false } },
   );
 
-  const { error } = await tempClient.auth.signUp({ email, password });
+  const { error } = await tempClient.auth.signUp({
+    email,
+    password,
+    // Si no cargaron nombre, no mandamos "options" en absoluto —
+    // así el trigger guarda NULL, igual que Ana, Beto y Carla,
+    // que se crearon desde el dashboard sin metadata.
+    options: fullName ? { data: { full_name: fullName } } : undefined,
+  });
+
   if (error) throw error;
 }
