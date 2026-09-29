@@ -39,12 +39,14 @@ export const appRouter = createBrowserRouter([
         Component: HomePage,
         loader: homeLoader,
         action: homeAction,
+        ErrorBoundary: CustomErrorFallback,
       },
       {
         path: "admin",
         Component: AdminDashboardPage,
         loader: adminDashboardLoader,
         action: adminDashboardAction,
+        ErrorBoundary: CustomErrorFallback,
       },
       {
         path: "*",

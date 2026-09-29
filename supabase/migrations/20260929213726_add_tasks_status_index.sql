@@ -1,0 +1,1 @@
+create index if not exists tasks_status_idx on public.tasks (status);
