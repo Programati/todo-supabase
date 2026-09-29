@@ -13,6 +13,13 @@ const navLinkClass = ({ isActive }: { isActive: boolean }) =>
       : "text-muted-foreground hover:bg-accent hover:text-accent-foreground"
   }`;
 
+const navLinkClass = ({ isActive }: { isActive: boolean }) =>
+  `flex items-center gap-1.5 rounded-md px-3 py-2 text-sm font-medium transition-colors ${
+    isActive
+      ? "bg-accent text-accent-foreground"
+      : "text-muted-foreground hover:bg-accent hover:text-accent-foreground"
+  }`;
+
 export const Navbar = () => {
   const userId = useSessionStore((s) => s.userId);
   const { data: profile } = useProfile();
