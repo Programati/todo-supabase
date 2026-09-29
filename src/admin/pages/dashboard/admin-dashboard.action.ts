@@ -18,13 +18,16 @@ export async function adminDashboardAction({ request }: ActionFunctionArgs) {
       case "create-user": {
         const email = String(formData.get("email") ?? "").trim();
         const password = String(formData.get("password") ?? "");
+        const fullName = String(formData.get("fullName") ?? "").trim();
+
         if (!email || password.length < 6) {
           toast.error(
             "Completá un email válido y una contraseña de al menos 6 caracteres",
           );
           return null;
         }
-        await createUserAsAdmin(email, password);
+
+        await createUserAsAdmin(email, password, fullName || undefined);
         toast.success(`Usuario ${email} creado`);
         break;
       }
