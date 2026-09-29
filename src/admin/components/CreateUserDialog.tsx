@@ -39,10 +39,17 @@ export const CreateUserDialog = () => {
         </DialogHeader>
         <Form method="post" className="flex flex-col gap-4">
           <input type="hidden" name="intent" value="create-user" />
+
           <div className="flex flex-col gap-2">
             <Label htmlFor="new-email">Email</Label>
             <Input id="new-email" name="email" type="email" required />
           </div>
+
+          <div className="flex flex-col gap-2">
+            <Label htmlFor="new-full-name">Nombre completo (opcional)</Label>
+            <Input id="new-full-name" name="fullName" type="text" />
+          </div>
+
           <div className="flex flex-col gap-2">
             <Label htmlFor="new-password">Contraseña temporal</Label>
             <Input
@@ -53,6 +60,7 @@ export const CreateUserDialog = () => {
               required
             />
           </div>
+
           <DialogFooter>
             <Button type="submit" disabled={isCreating}>
               {isCreating ? "Creando..." : "Crear"}
