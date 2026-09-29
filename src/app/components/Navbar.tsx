@@ -4,14 +4,6 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { useProfile } from "@/auth/hooks/useProfile";
 import { useSessionStore } from "@/stores/session.store";
-import { Link } from "react-router";
-
-const navLinkClass = ({ isActive }: { isActive: boolean }) =>
-  `flex items-center gap-1.5 rounded-md px-3 py-2 text-sm font-medium transition-colors ${
-    isActive
-      ? "bg-accent text-accent-foreground"
-      : "text-muted-foreground hover:bg-accent hover:text-accent-foreground"
-  }`;
 
 const navLinkClass = ({ isActive }: { isActive: boolean }) =>
   `flex items-center gap-1.5 rounded-md px-3 py-2 text-sm font-medium transition-colors ${
