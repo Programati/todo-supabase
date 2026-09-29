@@ -11,6 +11,9 @@ import { CustomNotFound } from "@/components/custom/CustomNotFound";
 import { homeAction } from "@/task/pages/home/home.action";
 import { HomePage } from "@/task/pages/home/HomePage";
 import { homeLoader } from "@/task/pages/home/home.loader";
+import { AdminDashboardPage } from "@/admin/pages/dashboard/AdminDashboardPage";
+import { adminDashboardAction } from "@/admin/pages/dashboard/admin-dashboard.action";
+import { adminDashboardLoader } from "@/admin/pages/dashboard/admin-dashboard.loader";
 
 export const appRouter = createBrowserRouter([
   {
@@ -36,6 +39,12 @@ export const appRouter = createBrowserRouter([
         Component: HomePage,
         loader: homeLoader,
         action: homeAction,
+      },
+      {
+        path: "admin",
+        Component: AdminDashboardPage,
+        loader: adminDashboardLoader,
+        action: adminDashboardAction,
       },
       {
         path: "*",

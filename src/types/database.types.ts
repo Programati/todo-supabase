@@ -81,7 +81,25 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      get_user_task_metrics: {
+        Args: never
+        Returns: {
+          email: string
+          full_name: string
+          role: Database["public"]["Enums"]["app_role"]
+          tasks_completed: number
+          tasks_created: number
+          user_id: string
+        }[]
+      }
       is_admin: { Args: never; Returns: boolean }
+      set_user_role: {
+        Args: {
+          new_role: Database["public"]["Enums"]["app_role"]
+          target_user_id: string
+        }
+        Returns: undefined
+      }
     }
     Enums: {
       app_role: "admin" | "user"
