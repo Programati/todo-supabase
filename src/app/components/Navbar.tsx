@@ -2,6 +2,7 @@ import { Form } from "react-router";
 import { Button } from "@/components/ui/button";
 import { useProfile } from "@/auth/hooks/useProfile";
 import { useSessionStore } from "@/stores/session.store";
+import { Link } from "react-router";
 
 export const Navbar = () => {
   const userId = useSessionStore((s) => s.userId);
@@ -19,6 +20,12 @@ export const Navbar = () => {
             Cerrar sesión
           </Button>
         </Form>
+      )}
+
+      {profile?.role === "admin" && (
+        <Link to="/admin" className="text-sm underline underline-offset-4">
+          Admin
+        </Link>
       )}
     </header>
   );
