@@ -1,5 +1,6 @@
 import { redirect } from "react-router";
 import { supabase } from "@/lib/supabase";
+import { toast } from "sonner";
 
 export async function requireSession() {
   const { data } = await supabase.auth.getSession();
@@ -17,4 +18,23 @@ export async function requireGuest() {
   if (data.session) {
     throw redirect("/");
   }
+}
+
+export async function requireAdmin() {
+  const session = await requireSession();
+
+  const { data, error } = await supabase
+    .from("profiles")
+    .select("role")
+    .eq("id", session.user.id)
+    .single();
+
+  if (error) throw error;
+
+  if (data.role !== "admin") {
+    toast.error("No tenés permisos de administrador");
+    throw redirect("/");
+  }
+
+  return session;
 }
